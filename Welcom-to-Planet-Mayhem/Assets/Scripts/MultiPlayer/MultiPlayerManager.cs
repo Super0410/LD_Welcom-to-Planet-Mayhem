@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MultiPlayerManager : MonoBehaviour
 {
@@ -10,13 +9,12 @@ public class MultiPlayerManager : MonoBehaviour
 
 	public event System.Action<int> OnPlayerJoinEvent;
 
-	public Button btn_PlayerAdder;
-
 	#endregion
 
 	#region Private Members
 
 	int playerCount = 0;
+	int playerAliveCount = 0;
 
 	#endregion
 
@@ -24,11 +22,7 @@ public class MultiPlayerManager : MonoBehaviour
 
 	void Start ()
 	{
-		btn_PlayerAdder.onClick.AddListener (delegate {
-			OnPlayerJoin ();
-		});
 	}
-
 
 	#endregion
 
@@ -36,12 +30,21 @@ public class MultiPlayerManager : MonoBehaviour
 
 	public void OnPlayerJoin ()
 	{
-		if (playerCount > 4)
+		if (playerCount > 3)
 			return;
 
 		playerCount++;
+		playerAliveCount++;
 		if (OnPlayerJoinEvent != null)
 			OnPlayerJoinEvent (playerCount);
+	}
+
+	public void OnPlayerDie ()
+	{
+		playerAliveCount--;
+		if (playerAliveCount <= 0) {
+			FindObjectOfType<GameManager> ().OnGameOver ();
+		}
 	}
 
 	#endregion

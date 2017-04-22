@@ -36,6 +36,7 @@ public class PlayerSpawner : MonoBehaviour
 	void onPlayerSpawn (int playerCount)
 	{
 		GameObject newPlayer = Instantiate (playerPrefab);
+		newPlayer.GetComponent<PlayerInit> ().OnPlayerInit (playerCount - 1);
 		allPlayerArr [playerCount - 1] = newPlayer;
 
 		switch (playerCount) {

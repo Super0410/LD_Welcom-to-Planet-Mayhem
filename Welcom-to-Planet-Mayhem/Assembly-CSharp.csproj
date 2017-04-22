@@ -46,9 +46,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\GameUI.cs" />
      <Compile Include="Assets\Scripts\MultiPlayer\MultiPlayerManager.cs" />
      <Compile Include="Assets\Scripts\MultiPlayer\PlayerSpawner.cs" />
      <Compile Include="Assets\Scripts\MultiPlayer\_FORTEST_Movement.cs" />
+     <Compile Include="Assets\Scripts\PlayerInit.cs" />
+     <Compile Include="Assets\Scripts\RankUIGlobal.cs" />
+     <Compile Include="Assets\Scripts\Score\RankManager.cs" />
+     <Compile Include="Assets\Scripts\Score\ScoreKeeperForPlayer.cs" />
+     <Compile Include="Assets\Scripts\Score\ScoreUIForPlayer.cs" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
