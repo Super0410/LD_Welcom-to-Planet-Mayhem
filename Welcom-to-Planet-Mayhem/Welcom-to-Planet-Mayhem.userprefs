@@ -1,10 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Score\ScoreKeeperForPlayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerController\_FORTEST_PlayerController.cs">
     <Files>
-      <File FileName="Assets\Scripts\RankUIGlobal.cs" Line="23" Column="50" />
-      <File FileName="Assets\Scripts\Score\ScoreUIForPlayer.cs" Line="6" Column="30" />
-      <File FileName="Assets\Scripts\Score\ScoreKeeperForPlayer.cs" Line="38" Column="29" />
+      <File FileName="Assets\Scripts\PlayerController\_FORTEST_PlayerController.cs" Line="4" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

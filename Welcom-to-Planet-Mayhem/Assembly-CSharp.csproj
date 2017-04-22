@@ -48,14 +48,18 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameUI.cs" />
+     <Compile Include="Assets\Scripts\Gun\Gun.cs" />
+     <Compile Include="Assets\Scripts\Gun\GunFlash.cs" />
+     <Compile Include="Assets\Scripts\Gun\ShellEjection.cs" />
      <Compile Include="Assets\Scripts\MultiPlayer\MultiPlayerManager.cs" />
      <Compile Include="Assets\Scripts\MultiPlayer\PlayerSpawner.cs" />
-     <Compile Include="Assets\Scripts\MultiPlayer\_FORTEST_Movement.cs" />
+     <Compile Include="Assets\Scripts\PlayerController\GunController.cs" />
+     <Compile Include="Assets\Scripts\PlayerController\_FORTEST_PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerInit.cs" />
-     <Compile Include="Assets\Scripts\RankUIGlobal.cs" />
-     <Compile Include="Assets\Scripts\Score\RankManager.cs" />
-     <Compile Include="Assets\Scripts\Score\ScoreKeeperForPlayer.cs" />
-     <Compile Include="Assets\Scripts\Score\ScoreUIForPlayer.cs" />
+     <Compile Include="Assets\Scripts\Score&amp;Rank\RankManager.cs" />
+     <Compile Include="Assets\Scripts\Score&amp;Rank\RankUIGlobal.cs" />
+     <Compile Include="Assets\Scripts\Score&amp;Rank\ScoreKeeperForPlayer.cs" />
+     <Compile Include="Assets\Scripts\Score&amp;Rank\ScoreUIForPlayer.cs" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
