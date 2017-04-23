@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class RankManager : MonoBehaviour
+public static class RankManager
 {
 	#region Private Members
 
-	public List<ScoreKeeperForPlayer> scoreKeeperList = new List<ScoreKeeperForPlayer> ();
+	public static List<ScoreKeeperForPlayer> scoreKeeperList = new List<ScoreKeeperForPlayer> ();
 
 	#endregion
 
 	#region Public Methods
 
-	public void AddScoreListener (ScoreKeeperForPlayer scoreKeeper)
+	public static void AddScoreListener (ScoreKeeperForPlayer scoreKeeper)
 	{
 		scoreKeeperList.Add (scoreKeeper);
 	}
 
-	public void DoRank ()
+	public static void DoRank ()
 	{
 		scoreKeeperList = scoreKeeperList.OrderBy (a => a.score).ToList ();
 

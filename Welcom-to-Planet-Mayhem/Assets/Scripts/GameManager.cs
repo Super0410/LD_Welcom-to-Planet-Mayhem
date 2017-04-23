@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WelcomeToPlanetMayhem;
+using GameSystems.Patterns;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
 	
 	#region Public Members
@@ -20,6 +22,7 @@ public class GameManager : MonoBehaviour
 	void Start ()
 	{
 		gameUI = GetComponent<GameUI> ();
+		Common.State = Common.GameState.Playing;
 	}
 
 	void Update ()
@@ -40,8 +43,7 @@ public class GameManager : MonoBehaviour
 	{
 		//TODO
 
-
-		FindObjectOfType<RankUIGlobal> ().UpdateGlobalRankUI (FindObjectOfType< RankManager> ().scoreKeeperList.ToArray ());
+		RankUIGlobal.UpdateGlobalRankUI (RankManager.scoreKeeperList.ToArray ());
 		gameUI.OpenGameOverPanel ();
 	}
 

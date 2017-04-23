@@ -20,7 +20,6 @@ public class ScoreKeeperForPlayer : MonoBehaviour
 	#region Private Members
 
 	ScoreUIForPlayer scoreUI;
-	RankManager rankManager;
 	float timeBetweenNextKill = 1.5f;
 	float lastTimeKilled;
 
@@ -31,10 +30,9 @@ public class ScoreKeeperForPlayer : MonoBehaviour
 	void Start ()
 	{
 		scoreUI = GetComponent<ScoreUIForPlayer> ();
-		rankManager = FindObjectOfType<RankManager> ();
 
 		score = Random.Range (0, 100);
-		rankManager.DoRank ();
+		RankManager.DoRank ();
 		updateScore (playerIndex);
 
 //		Enemy.OnDeathStatic += updateScore;
@@ -69,7 +67,7 @@ public class ScoreKeeperForPlayer : MonoBehaviour
 
 		score += basicScorePerKill + (int)Mathf.Pow (awardPowForComble, combleCount);
 
-		rankManager.DoRank ();
+		RankManager.DoRank ();
 
 		scoreUI.UpdateScoreText (score);
 	}

@@ -33,7 +33,7 @@ public class PlayerInit : MonoBehaviour
 	{
 		ScoreKeeperForPlayer scoreKeeper = GetComponentInChildren<ScoreKeeperForPlayer> ();
 		scoreKeeper.playerIndex = playerIndex;
-		FindObjectOfType<RankManager> ().AddScoreListener (scoreKeeper);
+		RankManager.AddScoreListener (scoreKeeper);
 	}
 
 	#endregion

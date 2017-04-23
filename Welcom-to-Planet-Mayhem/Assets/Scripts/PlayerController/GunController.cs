@@ -1,28 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WelcomeToPlanetMayhem;
+using GameSystems.ObjectManagement;
 
 public class GunController : MonoBehaviour
 {
 	public Transform weaponHold;
-	//	public Gun[] allGunArr;
 
-	private Gun equippedGun;
+	Gun equippedGun;
 
-	public void EquipGun (Gun gun2Equip)
+	void Start ()
 	{
-		if (equippedGun != null) {
-			Destroy (equippedGun.gameObject);
+		if (weaponHold == null) {
+			weaponHold = GetComponentInChildren<WeaponHolder> ().transform;
 		}
-		equippedGun = Instantiate (gun2Equip, weaponHold.position, weaponHold.rotation) as Gun;
-		equippedGun.transform.parent = weaponHold;
 	}
 
-	//	public void EquipGun (int weaponIndex)
-	//	{
-	//		if (allGunArr [weaponIndex] != null)
-	//			EquipGun (allGunArr [weaponIndex]);
-	//	}
+	public void EquipGun (string gunID)
+	{
+		if (string.IsNullOrEmpty (gunID) || weaponHold == null)
+			return;
+		
+		var gunToEquip = ObjectPooler.FetchInstance (gunID);
+		if (gunToEquip = null)
+			return;
+
+		if (equippedGun != null) {
+			ObjectPooler.ReturnInstance (equippedGun.GetType ().Name, equippedGun.gameObject);
+//			Destroy (equippedGun.gameObject);
+		}
+
+		gunToEquip.transform.position = weaponHold.position;
+		gunToEquip.transform.rotation = weaponHold.rotation;
+		gunToEquip.transform.SetParent (weaponHold);
+		equippedGun = gunToEquip.GetComponent<Gun> (); //Instantiate<Gun> (gunToEquip, weaponHold.position, weaponHold.rotation);
+		equippedGun.Init ();
+	}
 
 	public void OnTriggerHold ()
 	{

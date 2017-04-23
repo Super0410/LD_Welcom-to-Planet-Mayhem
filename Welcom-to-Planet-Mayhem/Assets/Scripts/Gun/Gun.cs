@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameSystems.ObjectManagement;
+using WelcomeToPlanetMayhem;
 
 public class Gun : MonoBehaviour
 {
@@ -45,13 +47,12 @@ public class Gun : MonoBehaviour
 
 	void Start ()
 	{
-		burstRemain = burstCount;
-		shotsRemain = shotsPerMag;
+		Init ();
 	}
 
 	public void OnTriggerHold ()
 	{
-		shoot ();
+		Shoot ();
 		isTriggerUp = false;
 	}
 
@@ -75,7 +76,7 @@ public class Gun : MonoBehaviour
 		}
 	}
 
-	void shoot ()
+	void Shoot ()
 	{
 		if (!isReloading && Time.time > nextShotTime && shotsRemain > 0) {
 
@@ -95,6 +96,12 @@ public class Gun : MonoBehaviour
 					break;
 				}
 				shotsRemain--;
+
+//				var bullet = ObjectPooler.FetchInstance< bulletPrefab.GetType() > ();
+//				if(bullet != null){
+//					bullet.transform.position = muzzlePointArr [i].position;
+//					bullet.transform.rotation = muzzlePointArr [i].rotation;
+//				}
 
 				Instantiate (bulletPrefab, muzzlePointArr [i].position, muzzlePointArr [i].rotation);
 			}
@@ -147,5 +154,12 @@ public class Gun : MonoBehaviour
 		isReloading = false;
 		shotsRemain = shotsPerMag;
 		burstRemain = burstCount;
+	}
+
+	public void Init ()
+	{
+		burstRemain = burstCount;
+		shotsRemain = shotsPerMag;
+		ObjectPooler.CreatePool (bulletPrefab.GetType ().Name, bulletPrefab, 100);
 	}
 }
