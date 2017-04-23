@@ -46,15 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\VoxelToUnity v1.4.1\Editor\Core.cs" />
-     <Compile Include="Assets\VoxelToUnity v1.4.1\Editor\Postprocessor.cs" />
-     <Compile Include="Assets\VoxelToUnity v1.4.1\Editor\QbData.cs" />
-     <Compile Include="Assets\VoxelToUnity v1.4.1\Editor\QbFile.cs" />
-     <Compile Include="Assets\VoxelToUnity v1.4.1\Editor\SpritePostprocessor.cs" />
-     <Compile Include="Assets\VoxelToUnity v1.4.1\Editor\Util.cs" />
-     <Compile Include="Assets\VoxelToUnity v1.4.1\Editor\VoxData.cs" />
-     <Compile Include="Assets\VoxelToUnity v1.4.1\Editor\VoxFile.cs" />
-     <Compile Include="Assets\VoxelToUnity v1.4.1\Editor\VoxelToUnityWindow.cs" />
+     <Compile Include="Assets\Editor\ImageEffects\BloomEditor.cs" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
@@ -116,6 +108,8 @@
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{B6B57764-2FE4-62AE-6D67-92F931425EDD}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
+      <Project>{4704995C-4218-F20A-F3D4-190014E2D393}</Project>      <Name>Assembly-CSharp-Editor-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
