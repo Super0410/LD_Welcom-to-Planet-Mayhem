@@ -145,11 +145,18 @@ public class Gun : MonoBehaviour
 
 		float percent = 0;
 		float reloadSpeed = 1 / reloadTime;
+		float maxReloadAngle = 40;
+		Vector3 origEulerAnlge = transform.localEulerAngles;
 
 		while (percent < 1) {
 			percent += Time.deltaTime * reloadSpeed;
+
+			float interpolation = (-Mathf.Pow (percent, 2) + percent) * 4;
+			float reloadAngle = Mathf.Lerp (0, maxReloadAngle, interpolation);
+			transform.localEulerAngles = origEulerAnlge + Vector3.left * reloadAngle;
 			yield return null;
 		}
+		transform.localEulerAngles = origEulerAnlge;
 
 		isReloading = false;
 		shotsRemain = shotsPerMag;
