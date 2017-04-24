@@ -8,8 +8,8 @@ public class PlanetDetector : MonoBehaviour
 	{
 		print ("ENTER");
 		if (collision.collider.name == "Planet") {
-			Destroy (GetComponent<GravityBody> ());
-			Destroy (GetComponent<PlanetDetector> ());
+			GetComponent<GravityBody> ().enabled = false;
+			GetComponent<PlanetDetector> ().enabled = false;
 		}
 	}
 }
