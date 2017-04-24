@@ -1,17 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-using UnityEngine.UI;
 
-public class GameUI : MonoBehaviour
+public class GameUI : Singleton<GameUI>
 {
-	
+	enum MenuState
+	{
+		Main,
+		Options,
+		Ranking
+	}
+
 	#region Public Members
 
-	public string openAnimatorStr = "IsOpen";
-
-	public Animator anim_GameOverPanel;
-
+	[SerializeField] GameObject mainMenu;
+	[SerializeField] GameObject playerLobby;
+	[SerializeField] string openAnimatorStr = "IsOpen";
+	[SerializeField] Animator anim_GameOverPanel;
 
 	#endregion
 
@@ -23,7 +27,10 @@ public class GameUI : MonoBehaviour
 
 	void Start ()
 	{
+		if (anim_GameOverPanel == null)
+			anim_GameOverPanel = transform.Find ("GameOverPanel").GetComponent<Animator> ();
 		
+		anim_GameOverPanel.gameObject.SetActive (false);
 	}
 
 	void Update ()
@@ -35,9 +42,16 @@ public class GameUI : MonoBehaviour
 
 	#region Public Methods
 
-	public void OpenGameOverPanel ()
+	public static void ShowLoadingScreen ()
 	{
-		anim_GameOverPanel.SetBool (openAnimatorStr, true);
+		//TODO: switch to game screen
+		//TODO: overlay
+	}
+
+	public static void OpenGameOverPanel ()
+	{
+		Instance.anim_GameOverPanel.gameObject.SetActive (true);
+		Instance.anim_GameOverPanel.SetBool (Instance.openAnimatorStr, true);
 	}
 
 	#endregion

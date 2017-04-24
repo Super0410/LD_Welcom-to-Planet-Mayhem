@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using WelcomeToPlanetMayhem;
-
-//using GameSystems.ObjectManagement;
+﻿using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
@@ -24,18 +19,19 @@ public class GunController : MonoBehaviour
 			return;
 		
 		var gunToEquip = ObjectPooler.FetchInstance (gunID);
-		if (gunToEquip = null)
+
+		if (gunToEquip == null)
 			return;
 
 		if (equippedGun != null) {
 			ObjectPooler.ReturnInstance (equippedGun.GetType ().Name, equippedGun.gameObject);
-//			Destroy (equippedGun.gameObject);
 		}
 
 		gunToEquip.transform.position = weaponHold.position;
 		gunToEquip.transform.rotation = weaponHold.rotation;
 		gunToEquip.transform.SetParent (weaponHold);
-		equippedGun = gunToEquip.GetComponent<Gun> (); //Instantiate<Gun> (gunToEquip, weaponHold.position, weaponHold.rotation);
+		gunToEquip.SetActive (true);
+		equippedGun = gunToEquip.GetComponent<Gun> ();
 		equippedGun.Init ();
 	}
 

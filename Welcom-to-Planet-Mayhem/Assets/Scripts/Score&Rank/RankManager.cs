@@ -7,13 +7,13 @@ public static class RankManager
 {
 	#region Private Members
 
-	public static List<ScoreKeeperForPlayer> scoreKeeperList = new List<ScoreKeeperForPlayer> ();
+	public static List<PlayerScore> scoreKeeperList = new List<PlayerScore> ();
 
 	#endregion
 
 	#region Public Methods
 
-	public static void AddScoreListener (ScoreKeeperForPlayer scoreKeeper)
+	public static void AddScoreListener (PlayerScore scoreKeeper)
 	{
 		scoreKeeperList.Add (scoreKeeper);
 	}

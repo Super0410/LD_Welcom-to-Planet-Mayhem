@@ -5,6 +5,7 @@
 // Date: 	   	2017/04/22																						 						 //
 //=======================================================================================================================================//
 
+
 #region Imports
 
 using UnityEngine;
@@ -12,204 +13,269 @@ using System.Collections;
 
 #endregion
 
-namespace WelcomeToPlanetMayhem
+public class PlayerController : MonoBehaviour, IDamageable, IChangeStatus
 {
-	public class PlayerController : MonoBehaviour
-	{
-		//===============================================================================================================================//
-		//======================================================== Pending Tasks ========================================================//
-		//===============================================================================================================================//
+	//===============================================================================================================================//
+	//==================================================== Inspector Variables ======================================================//
+	//===============================================================================================================================//
 
-		#region Pending Tasks
+	#region Inspector Variables
 
+	[Header ("Component References")]
+	[SerializeField] PlayerMovement movementController;
+	[SerializeField] PlayerCamera cameraController;
+	[SerializeField] GunController gunController;
+	[SerializeField] PlayerUI uiController;
 
-		#endregion
+	[Header ("Gameplay Parameters")]
+	[Range (100f, 1000f)][SerializeField] float maxHP;
+	[SerializeField] string starterWeapon;
 
-		//===============================================================================================================================//
-		//====================================================== Internal Classes =======================================================//
-		//===============================================================================================================================//
+	#endregion
 
-		#region Internal Classes
+	//===============================================================================================================================//
+	//======================================================= Private Fields ========================================================//
+	//===============================================================================================================================//
 
+	#region Private Fields
 
-		#endregion
+	string turnAxis;
+	string moveAxis;
+	string yawAxis;
+	string pitchAxis;
 
-		//===============================================================================================================================//
-		//==================================================== Inspector Variables ======================================================//
-		//===============================================================================================================================//
+	KeyCode jumpBtn;
+	KeyCode shootBtn;
+	KeyCode switchWeaponRightBtn;
+	KeyCode switchWeaponLeftBtn;
+	KeyCode startBtn;
+	KeyCode cancelBtn;
+	KeyCode confirmBtn;
+	KeyCode useToolBtn;
+	KeyCode reloadBtn;
 
-		#region Inspector Variables
+	PlayerScore score;
+	PlayerInventory inventory;
 
-		[SerializeField] PlayerMovement movementController;
-		[SerializeField] PlayerCamera cameraController;
-		[SerializeField] GunController gunController;
-		[SerializeField] PlayerState stateController;
-		[SerializeField] PlayerInventory inventoryController;
+	Animator anim;
 
-		#endregion
+	float HP;
+	Common.PlayerStates state;
+	Common.PlayerStatus status;
 
-		//===============================================================================================================================//
-		//======================================================= Private Fields ========================================================//
-		//===============================================================================================================================//
+	#endregion
 
-		#region Private Fields
+	//===============================================================================================================================//
+	//===================================================== Public Properties =======================================================//
+	//===============================================================================================================================//
 
-		string turnInput;
-		string moveInput;
-		string jumpInput;
-		string zoomInput;
-		string shootInput;
-		string switchWeaponRightInput;
-		string switchWeaponLeftInput;
-		string startInput;
-		string cancelInput;
-		string confirmInput;
-		string useToolInput;
-		string reloadInput;
+	#region Public Properties
 
-		#endregion
-
-		//===============================================================================================================================//
-		//===================================================== Public Properties =======================================================//
-		//===============================================================================================================================//
-
-		#region Public Properties
-
-		public int PlayerID {
-			get;
-			set;
-		}
-
-		#endregion
-
-		//===============================================================================================================================//
-		//==================================================== Unity Event Functions ====================================================//
-		//===============================================================================================================================//
-
-		#region Unity Event Functions
-
-		void Start ()
-		{
-			turnInput = Common.TurnInput + PlayerID;
-			moveInput = Common.MoveInput + PlayerID;
-			jumpInput = Common.JumpInput + PlayerID;
-			zoomInput = Common.ZoomInput + PlayerID;
-			shootInput = Common.ShootInput + PlayerID;
-
-			switchWeaponRightInput = Common.SwitchRightInput + PlayerID;
-			switchWeaponLeftInput = Common.SwitchLeftInput + PlayerID;
-			startInput = Common.StartInput + PlayerID;
-			cancelInput = Common.CancelInput + PlayerID;
-			confirmInput = Common.ConfirmInput + PlayerID;
-			useToolInput = Common.UseToolInput + PlayerID;
-			reloadInput = Common.ReloadInput + PlayerID;
-
-			movementController = GetComponentInChildren<PlayerMovement> ();
-			cameraController = GetComponentInChildren<PlayerCamera> ();
-			gunController = GetComponentInChildren<GunController> ();
-			stateController = GetComponentInChildren<PlayerState> ();
-			inventoryController = GetComponentInChildren<PlayerInventory> ();
-		}
-
-		void Update ()
-		{
-			//TODO: Convert to use player state instead
-
-			switch (Common.State) {
-			case Common.GameState.Playing:
-				if (movementController != null) {
-					movementController.OnMove (Input.GetAxis (moveInput));
-					movementController.OnTurn (Input.GetAxis (turnInput));
-					movementController.OnJump (Input.GetButtonDown (jumpInput));
-				}
-				if (cameraController != null) {
-					cameraController.OnZoom (Input.GetAxis (zoomInput));
-				}
-				var increment = 0;
-				if (gunController != null) {
-					if (Input.GetButtonDown (shootInput)) {
-						gunController.OnTriggerHold ();
-					} else if (Input.GetButtonUp (shootInput)) {
-						gunController.OnTriggerRelease ();
-					}
-
-					if (Input.GetButtonDown (reloadInput)) {
-						gunController.Reload ();
-					}
-
-					if (Input.GetButtonDown (switchWeaponRightInput)) {
-						increment = 1;
-					} else if (Input.GetButtonDown (switchWeaponLeftInput)) {
-						increment = -1;
-					}
-
-					if (inventoryController != null) {
-						if (increment != 0) {
-							var nextGun = inventoryController.GetNextWeapon (increment);
-							gunController.EquipGun (nextGun);
-						}
-					}
-				}
-
-				if (inventoryController != null) {
-					if (Input.GetButtonDown (useToolInput)) {
-						inventoryController.UseTool ();
-					}
-				}
-
-				break;
-			}
-		}
-
-		#endregion
-
-		//===============================================================================================================================//
-		//=========================================================== Public Methods ====================================================//
-		//===============================================================================================================================//
-
-		#region Public Methods
-
-		public void Init ()
-		{
-
-		}
-
-		#endregion
-
-		//===============================================================================================================================//
-		//========================================================== Private  Methods ===================================================//
-		//===============================================================================================================================//
-
-		#region Private Methods
-
-		
-
-		#endregion
-
-		//===============================================================================================================================//
-		//============================================================= Coroutines ======================================================//
-		//===============================================================================================================================//
-
-		#region Coroutines
-
-		
-
-		#endregion
-
-		
-		//===============================================================================================================================//
-		//====================================================== Debugging & Testing ====================================================//
-		//===============================================================================================================================//
-
-		#region Debugging & Testing
-
-		void OnValidate ()
-		{
-			PlayerID = Mathf.Clamp (PlayerID, 1, 4);
-		}
-
-
-		#endregion
-
+	public int PlayerID {
+		get;
+		set;
 	}
+
+	public Common.PlayerStates State {
+		get{ return state; }
+	}
+
+	public Common.PlayerStatus Status {
+		get { return status; }
+	}
+
+	#endregion
+
+	//===============================================================================================================================//
+	//==================================================== Unity Event Functions ====================================================//
+	//===============================================================================================================================//
+
+	#region Unity Event Functions
+
+	void Start ()
+	{
+		GameManager.Load ();
+		PlayerID = 1;
+		Init ();
+	}
+
+	void Update ()
+	{
+		switch (state) {
+		case Common.PlayerStates.Alive:
+			if (Input.GetKeyDown (startBtn)) {
+				GameManager.Pause (PlayerID);
+				return;
+			}
+
+			if (movementController != null) {
+				movementController.OnMove (Input.GetAxis (moveAxis));
+				movementController.OnTurn (Input.GetAxis (turnAxis));
+				movementController.OnJump (Input.GetKeyDown (jumpBtn));
+			}
+			if (cameraController != null) {
+				cameraController.OnMoveCamera (Input.GetAxis (pitchAxis), Input.GetAxis (yawAxis));
+			}
+
+			var increment = 0;
+			if (gunController != null) {
+				if (Input.GetKey (shootBtn)) {
+					gunController.OnTriggerHold ();
+				} else if (Input.GetKeyUp (shootBtn)) {
+					gunController.OnTriggerRelease ();
+				}
+
+				if (Input.GetKeyDown (reloadBtn)) {
+					gunController.Reload ();
+				}
+
+				if (Input.GetKeyDown (switchWeaponRightBtn)) {
+					increment = 1;
+				} else if (Input.GetKeyDown (switchWeaponLeftBtn)) {
+					increment = -1;
+				}
+
+				if (inventory != null) {
+					if (increment != 0) {
+						var nextGun = inventory.GetNextWeapon (increment);
+						gunController.EquipGun (nextGun);
+					}
+				}
+			}
+
+			if (inventory != null) {
+				if (Input.GetKeyDown (useToolBtn)) {
+					inventory.UseTool ();
+				}
+			}
+			break;
+		case Common.PlayerStates.Dying:
+			if (anim != null)
+				anim.SetBool ("Dead", true);
+			uiController.GameOver ();
+			break;
+		}
+	}
+
+	#endregion
+
+	//===============================================================================================================================//
+	//=========================================================== Public Methods ====================================================//
+	//===============================================================================================================================//
+
+	#region Public Methods
+
+	public void TakeDamage (float damage)
+	{
+		print (damage);
+		HP -= damage;
+		HP = Mathf.Clamp (HP, 0, maxHP);
+
+		if (HP <= 0) {
+			state = Common.PlayerStates.Dying;
+			uiController.ShowRespawn ();
+			return;
+		}
+
+		uiController.UpdateHealthBar (HP);
+	}
+
+	public void ChangeStatus (Common.PlayerStatus newStatus, float duration)
+	{
+		StartCoroutine (OnStatusChange (newStatus, duration));
+	}
+
+	#endregion
+
+	//===============================================================================================================================//
+	//========================================================== Private  Methods ===================================================//
+	//===============================================================================================================================//
+
+	#region Private Methods
+
+	[ContextMenu ("Init")]
+	public void Init ()
+	{			
+		turnAxis = InputMapping.TurnInput + PlayerID;
+		moveAxis = InputMapping.MoveInput + PlayerID;
+		yawAxis = InputMapping.YawInput + PlayerID;
+		pitchAxis = InputMapping.PitchInput + PlayerID;
+
+		shootBtn = InputMapping.ButtonID (InputMapping.ShootBtn, PlayerID);
+		jumpBtn = InputMapping.ButtonID (InputMapping.JumpBtn, PlayerID);
+		switchWeaponRightBtn = InputMapping.ButtonID (InputMapping.SwitchRightBtn, PlayerID);
+		switchWeaponLeftBtn = InputMapping.ButtonID (InputMapping.SwitchLeftBtn, PlayerID);
+		startBtn = InputMapping.ButtonID (InputMapping.StartBtn, PlayerID);
+		cancelBtn = InputMapping.ButtonID (InputMapping.CancelBtn, PlayerID);
+		confirmBtn = InputMapping.ButtonID (InputMapping.ConfirmBtn, PlayerID);
+		useToolBtn = InputMapping.ButtonID (InputMapping.UseToolBtn, PlayerID);
+		reloadBtn = InputMapping.ButtonID (InputMapping.ReloadBtn, PlayerID);
+
+		movementController = GetComponentInChildren<PlayerMovement> ();
+		cameraController = GetComponentInChildren<PlayerCamera> ();
+		gunController = GetComponentInChildren<GunController> ();
+		uiController = GetComponentInChildren<PlayerUI> ();
+
+		inventory = new PlayerInventory (starterWeapon);
+		score = new PlayerScore (PlayerID);
+
+		inventory.AddWeapon ("Gun_Auto");
+		inventory.AddWeapon ("Gun_Single");
+		inventory.AddWeapon ("Gun_Burst");
+
+		RankManager.AddScoreListener (score);
+
+		gunController.EquipGun (starterWeapon);
+
+		anim = GetComponentInChildren<Animator> ();
+
+		HP = maxHP;
+		uiController.UpdateHealthBar (HP);
+	}
+
+	public void Activate ()
+	{
+		gameObject.SetActive (true);
+	}
+
+	#endregion
+
+	//===============================================================================================================================//
+	//============================================================= Coroutines ======================================================//
+	//===============================================================================================================================//
+
+	#region Coroutines
+
+	IEnumerator OnStatusChange (Common.PlayerStatus newStatus, float duration)
+	{			
+		if (duration < 0.1f)
+			duration = 0.1f;
+
+		var originalStatus = status;
+		status = newStatus;
+
+		uiController.SetStatus (status.ToString ());
+
+		yield return new WaitForSeconds (duration);
+		status = originalStatus;
+
+		uiController.SetStatus (status.ToString ());
+	}
+
+	#endregion
+
+		
+	//===============================================================================================================================//
+	//====================================================== Debugging & Testing ====================================================//
+	//===============================================================================================================================//
+
+	#region Debugging & Testing
+
+	void OnValidate ()
+	{
+		PlayerID = Mathf.Clamp (PlayerID, 1, 4);
+	}
+
+	#endregion
+
 }

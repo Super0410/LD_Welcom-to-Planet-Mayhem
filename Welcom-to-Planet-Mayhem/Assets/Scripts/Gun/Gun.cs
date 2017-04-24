@@ -1,9 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-//using GameSystems.ObjectManagement;
-using WelcomeToPlanetMayhem;
 
 public class Gun : MonoBehaviour
 {
@@ -29,9 +25,9 @@ public class Gun : MonoBehaviour
 	public float recoilRotationSettleTime = 0.1f;
 
 	[Header ("Effects")]
-	public GameObject bulletPrefab;
+	public string bulletID;
 	public Transform shellEjectionPoint;
-	public ShellEjection shellPrefab;
+	public string shellID;
 	public GunFlash gunFlash;
 	public AudioClip shotAudio;
 	public AudioClip reloadAudio;
@@ -98,16 +94,22 @@ public class Gun : MonoBehaviour
 				}
 				shotsRemain--;
 
-//				var bullet = ObjectPooler.FetchInstance< bulletPrefab.GetType() > ();
-//				if(bullet != null){
-//					bullet.transform.position = muzzlePointArr [i].position;
-//					bullet.transform.rotation = muzzlePointArr [i].rotation;
-//				}
+				var bullet = ObjectPooler.FetchInstance (bulletID);
 
-				Instantiate (bulletPrefab, muzzlePointArr [i].position, muzzlePointArr [i].rotation);
+				if (bullet != null) {
+					bullet.transform.position = muzzlePointArr [i].position;
+					bullet.transform.rotation = muzzlePointArr [i].rotation;
+					bullet.SetActive (true);
+				}
 			}
 
-			Instantiate (shellPrefab.gameObject, shellEjectionPoint.position, shellEjectionPoint.rotation);
+			var shell = ObjectPooler.FetchInstance (shellID);
+			if (shell != null) {
+				shell.transform.position = shellEjectionPoint.position;
+				shell.transform.rotation = shellEjectionPoint.rotation;
+				shell.SetActive (true);
+			}
+
 			gunFlash.Active ();
 
 			transform.localPosition -= Vector3.forward * Random.Range (kickMinMax.x, kickMinMax.y);
@@ -147,17 +149,17 @@ public class Gun : MonoBehaviour
 		float percent = 0;
 		float reloadSpeed = 1 / reloadTime;
 		float maxReloadAngle = 40;
-		Vector3 origEulerAnlge = transform.localEulerAngles;
+		Vector3 origEulerAngles = transform.localEulerAngles;
 
 		while (percent < 1) {
 			percent += Time.deltaTime * reloadSpeed;
 
 			float interpolation = (-Mathf.Pow (percent, 2) + percent) * 4;
 			float reloadAngle = Mathf.Lerp (0, maxReloadAngle, interpolation);
-			transform.localEulerAngles = origEulerAnlge + Vector3.left * reloadAngle;
+			transform.localEulerAngles = origEulerAngles + Vector3.left * reloadAngle;
 			yield return null;
 		}
-		transform.localEulerAngles = origEulerAnlge;
+		transform.localEulerAngles = origEulerAngles;
 
 		isReloading = false;
 		shotsRemain = shotsPerMag;
@@ -168,6 +170,5 @@ public class Gun : MonoBehaviour
 	{
 		burstRemain = burstCount;
 		shotsRemain = shotsPerMag;
-		ObjectPooler.CreatePool (bulletPrefab.GetType ().Name, bulletPrefab, 100);
 	}
 }

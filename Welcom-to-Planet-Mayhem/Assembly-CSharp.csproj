@@ -53,45 +53,64 @@
      <Compile Include="Assets\Scripts\Common\Common.cs" />
      <Compile Include="Assets\Scripts\Common\EnumSpawnType.cs" />
      <Compile Include="Assets\Scripts\Common\FisherYatesRandom.cs" />
+     <Compile Include="Assets\Scripts\Common\IChangeStatus.cs" />
      <Compile Include="Assets\Scripts\Common\IDamageable.cs" />
      <Compile Include="Assets\Scripts\Common\PhysicsTools.cs" />
      <Compile Include="Assets\Scripts\Effects\XLine.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameUI.cs" />
-     <Compile Include="Assets\Scripts\GameUI\ButtonManager.cs" />
      <Compile Include="Assets\Scripts\Gun\Gun.cs" />
      <Compile Include="Assets\Scripts\Gun\GunFlash.cs" />
      <Compile Include="Assets\Scripts\Gun\ShellEjection.cs" />
+     <Compile Include="Assets\Scripts\Gun\SimpleBullet.cs" />
+     <Compile Include="Assets\Scripts\Gun\SimpleShell.cs" />
+     <Compile Include="Assets\Scripts\IKHandler.cs" />
      <Compile Include="Assets\Scripts\Inventory System\Item.cs" />
+     <Compile Include="Assets\Scripts\Miscelaneous\FlickerLight.cs" />
+     <Compile Include="Assets\Scripts\Miscelaneous\FlipNormals.cs" />
+     <Compile Include="Assets\Scripts\Miscelaneous\Spin.cs" />
+     <Compile Include="Assets\Scripts\Miscelaneous\TimeController.cs" />
      <Compile Include="Assets\Scripts\MultiPlayer\MultiPlayerManager.cs" />
      <Compile Include="Assets\Scripts\MultiPlayer\PlayerSpawner.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerCamera.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerIK.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerInventory.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerScore.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerUI.cs" />
+     <Compile Include="Assets\Scripts\Player\_TempController.cs" />
      <Compile Include="Assets\Scripts\PlayerController\GunController.cs" />
-     <Compile Include="Assets\Scripts\PlayerController\PlayerInit.cs" />
-     <Compile Include="Assets\Scripts\SceneSwitcher.cs" />
      <Compile Include="Assets\Scripts\Score&amp;Rank\RankManager.cs" />
      <Compile Include="Assets\Scripts\Score&amp;Rank\RankUIGlobal.cs" />
      <Compile Include="Assets\Scripts\Score&amp;Rank\ScoreKeeperForPlayer.cs" />
      <Compile Include="Assets\Scripts\Score&amp;Rank\ScoreUIForPlayer.cs" />
+     <Compile Include="Assets\Scripts\SetCharacterColor.cs" />
      <Compile Include="Assets\Scripts\Spawner\EnemySpawner\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\Spawner\EnemySpawner\FakeEnemy.cs" />
      <Compile Include="Assets\Scripts\Spawner\ObjectSpawner\ObjectSpawner.cs" />
      <Compile Include="Assets\Scripts\System\GravityBody.cs" />
+     <Compile Include="Assets\Scripts\System\InputMapping.cs" />
      <Compile Include="Assets\Scripts\System\ObjectPooler.cs" />
      <Compile Include="Assets\Scripts\System\Planet.cs" />
      <Compile Include="Assets\Scripts\System\PlanetDetector.cs" />
      <Compile Include="Assets\Scripts\System\Singleton.cs" />
      <Compile Include="Assets\Scripts\System\SpawnPoint.cs" />
      <Compile Include="Assets\Scripts\System\SpawnPointCreater.cs" />
+     <Compile Include="Assets\Scripts\System\TextureAtlas.cs" />
+     <Compile Include="Assets\Scripts\System\UI\ButtonManager.cs" />
+     <Compile Include="Assets\Scripts\System\UI\Lobby.cs" />
+     <Compile Include="Assets\Scripts\System\UI\MainMenu.cs" />
+     <Compile Include="Assets\Scripts\System\UI\SceneFade.cs" />
+     <Compile Include="Assets\Scripts\System\UI\SceneSwitcher.cs" />
+     <Compile Include="Assets\Scripts\TestAnim.cs" />
      <Compile Include="Assets\Scripts\VFX.cs" />
      <Compile Include="Assets\Scripts\Weapon System\Bullet.cs" />
      <Compile Include="Assets\Scripts\Weapon System\WeaponHolder.cs" />
      <Compile Include="Assets\Scripts\Weapon.cs" />
      <Compile Include="Assets\Scripts\_TEST_FakeEnemy.cs" />
+     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
@@ -110,6 +129,10 @@
  <Reference Include="UnityEngine.VR">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{627A38E0-8D72-7A59-D9E2-9745CABF106B}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

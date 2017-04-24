@@ -55,6 +55,7 @@
      <Compile Include="Assets\Plugins\VoxelToUnity v1.4.1\Editor\VoxData.cs" />
      <Compile Include="Assets\Plugins\VoxelToUnity v1.4.1\Editor\VoxFile.cs" />
      <Compile Include="Assets\Plugins\VoxelToUnity v1.4.1\Editor\VoxelToUnityWindow.cs" />
+     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
@@ -112,6 +113,10 @@
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>D:/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{627A38E0-8D72-7A59-D9E2-9745CABF106B}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

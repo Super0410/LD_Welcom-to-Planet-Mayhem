@@ -46,20 +46,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Standard Assets\Effects\ImageEffects\Scripts\Bloom.cs" />
-     <Compile Include="Assets\Standard Assets\Effects\ImageEffects\Scripts\PostEffectsBase.cs" />
-     <None Include="Assets\KriptoFX\Shaders\ExplosionsDistortionParticlesCutout.shader" />
-     <None Include="Assets\KriptoFX\Shaders\ExplosionsParticleBlendInterpolated.shader" />
-     <None Include="Assets\KriptoFX\Shaders\ExplosionsDistortionCullBack.shader" />
-     <None Include="Assets\KriptoFX\Shaders\ExplosionsParticleBlendLightSoft.shader" />
-     <None Include="Assets\KriptoFX\Shaders\ExplosionsGlowAdditive.shader" />
-     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
-     <None Include="Assets\KriptoFX\Readme.txt" />
-     <None Include="Assets\KriptoFX\Shaders\ExplosionsGlowAdditiveMobile.shader" />
-     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
-     <None Include="Assets\KriptoFX\Shaders\ExplosionsParticleBlendLight.shader" />
-     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
-     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendForBloom.shader" />
+     <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\MoveSample.cs" />
+     <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\RotateSample.cs" />
+     <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\SampleInfo.cs" />
+     <Compile Include="Assets\Plugins\Pixelplacement\iTween\iTween.cs" />
+     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>

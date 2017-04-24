@@ -15,6 +15,16 @@ using UnityEngine;
 public class GravityBody : MonoBehaviour
 {
 	//===============================================================================================================================//
+	//====================================================== Public Properties ======================================================//
+	//===============================================================================================================================//
+
+	#region Public Properties
+
+	public bool isStatic;
+
+	#endregion
+
+	//===============================================================================================================================//
 	//======================================================= Private Members =======================================================//
 	//===============================================================================================================================//
 
@@ -37,12 +47,24 @@ public class GravityBody : MonoBehaviour
 		myRig = GetComponent<Rigidbody> ();
 		myRig.freezeRotation = true;
 		myRig.useGravity = false;
+		myRig.collisionDetectionMode = CollisionDetectionMode.Continuous;
 	}
 	
 	// Update is called once per frame
 	protected virtual void FixedUpdate ()
 	{
 		Planet.Attract (myRig);
+	}
+
+	void OnCollisionEnter (Collision col)
+	{
+		if (!isStatic)
+			return;
+		
+		if ((col.gameObject.layer << 1) == LayerMask.NameToLayer ("Planet")) {
+			transform.SetParent (col.transform);
+			myRig.isKinematic = true;
+		}
 	}
 
 	#endregion

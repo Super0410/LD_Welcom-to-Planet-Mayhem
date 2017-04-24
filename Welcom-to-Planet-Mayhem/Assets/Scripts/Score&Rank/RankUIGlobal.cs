@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-//using GameSystems.Patterns;
 
 public class RankUIGlobal : Singleton<RankUIGlobal>
 {
@@ -11,7 +8,7 @@ public class RankUIGlobal : Singleton<RankUIGlobal>
 	public GameObject userScorePrefab;
 	//	const string userScorePrefabUrl = "UI/UserScoreUIElement";
 
-	public static void UpdateGlobalRankUI (ScoreKeeperForPlayer[] updateTarget)
+	public static void UpdateGlobalRankUI (PlayerScore[] updateTarget)
 	{
 		if (Instance.userScoreParent.childCount > 0) {
 			for (int i = 0; i < Instance.userScoreParent.childCount; i++) {

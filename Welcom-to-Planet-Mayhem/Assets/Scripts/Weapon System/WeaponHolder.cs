@@ -12,10 +12,8 @@ using UnityEngine;
 
 #endregion
 
-namespace WelcomeToPlanetMayhem
+
+public class WeaponHolder : MonoBehaviour
 {
-	public class WeaponHolder : MonoBehaviour
-	{
 		
-	}
 }

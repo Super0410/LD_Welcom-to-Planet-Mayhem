@@ -43,6 +43,8 @@ public class CameraMovement : MonoBehaviour
 	{
 		if (Input.GetMouseButtonDown (1)) {
 			cameraMod = CameraMod.Aim;
+			aimPoint.rotation = Quaternion.identity;
+			aimRotationY = aimRotationX = 0;
 		} else if (Input.GetMouseButtonUp (1)) {
 			cameraMod = CameraMod.Follow;
 		}

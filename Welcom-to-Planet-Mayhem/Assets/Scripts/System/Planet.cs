@@ -1,4 +1,4 @@
-﻿//=======================================================================================================================================//
+﻿﻿//=======================================================================================================================================//
 // Product:    	Welcome to Planet Mayhem																								 //
 // Developer : 	Pericles Barros																											 //
 // Company:    	GameDevTeam																												 //
@@ -124,7 +124,7 @@ public class Planet : Singleton<Planet>
 	{
 		if (Instance == null)
 			return;
-			
+
 		Vector3 targetDirection = (body.position - Instance.transform.position).normalized;
 		Quaternion targetRotation = Quaternion.FromToRotation (body.transform.up, targetDirection) * body.rotation;
 

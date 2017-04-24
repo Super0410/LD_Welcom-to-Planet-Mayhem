@@ -1,84 +1,87 @@
-﻿//=======================================================================================================================================//
-// Product:    	Welcome to Planet Mayhem																								 //
-// Developer : 	Pericles Barros																											 //
-// Company:    	GameDevTeam																												 //
-// Date: 	   	2017/04/22																						 						 //
-//=======================================================================================================================================//
-
-
-#region Imports
-
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 
-#endregion
-
-namespace WelcomeToPlanetMayhem
+public class PlayerCamera : MonoBehaviour
 {
-	public class PlayerCamera : MonoBehaviour
+	//	public enum CameraMode
+	//	{
+	//				Follow,
+	//		Aim
+	//	}
+
+	#region Public Members
+
+	public Transform aimPoint;
+	public Transform target;
+
+	[SerializeField] float yawSensitivity = 2;
+	[SerializeField] float pitchSensitivity = 2;
+	[SerializeField] Vector2 aimMinMaxX = new Vector2 (-15, 15);
+	[SerializeField] Vector2 aimMinMaxY = new Vector2 (-50, 15);
+
+	#endregion
+
+	#region Private Members
+
+	//	CameraMode cameraMode;
+	Vector3 prePosition;
+	Quaternion preRotation;
+
+	float aimYaw;
+	float aimPitch;
+
+	#endregion
+
+	#region Unity Methods
+
+	//	void Start ()
+	//	{
+	//		cameraMode = CameraMode.Aim;
+	//	}
+
+	void Update ()
 	{
-		//===============================================================================================================================//
-		//==================================================== Inspector Variables ======================================================//
-		//===============================================================================================================================//
-
-		#region Inspector Variables
-
-		[Header ("Camera Parameters")]
-		[SerializeField] float zoomSpeed;
-		[SerializeField] Vector3 offset;
-		[SerializeField] Transform target;
-
-		#endregion
-
-		//===============================================================================================================================//
-		//======================================================= Private Fields ========================================================//
-		//===============================================================================================================================//
-
-		#region Private Fields
-
-		Camera cam;
-		float zoomInput;
-
-		#endregion
-
-		//===============================================================================================================================//
-		//==================================================== Unity Event Functions ====================================================//
-		//===============================================================================================================================//
-
-		#region Unity Event Functions
-
-		void Start ()
-		{			
-			cam = GetComponentInChildren<Camera> ();
-		}
-
-		void Update ()
-		{
-			//Zoom in/out
-			cam.fieldOfView += zoomInput * zoomSpeed;
-			cam.fieldOfView = Mathf.Clamp (cam.fieldOfView, 35f, 90f);
-		}
-
-		void LateUpdate ()
-		{				
-			//Follow target
-			transform.position = target.TransformPoint (offset);
-			transform.rotation = Quaternion.LookRotation ((target.position - transform.position).normalized, target.up);
-		}
-
-		#endregion
-
-		//===============================================================================================================================//
-		//=========================================================== Public Methods ====================================================//
-		//===============================================================================================================================//
-
-		#region Public Methods
-
-		public void OnZoom (float input)
-		{
-			zoomInput = input;
-		}
-
-		#endregion
+		aimYaw = Mathf.Clamp (aimYaw, aimMinMaxX.x, aimMinMaxX.y);
+		aimPitch = Mathf.Clamp (aimPitch, aimMinMaxY.x, aimMinMaxY.y);
 	}
+
+	void LateUpdate ()
+	{
+		aimPoint.transform.localEulerAngles = new Vector3 (-aimPitch, aimYaw, 0);
+
+//		if (cameraMode == CameraMode.Follow) {
+//			//Follow target
+//			transform.position = target.position;
+//			transform.rotation = target.rotation;
+//		} else {
+		transform.position = aimPoint.position;
+		transform.rotation = aimPoint.rotation;
+//		}
+	}
+
+	#endregion
+
+	#region Public Methods
+
+	public void OnMoveCamera (float pitch, float yaw)
+	{
+		aimYaw += yaw * yawSensitivity;
+		aimPitch += pitch * pitchSensitivity;
+	}
+
+	//	public void SwitchCameraMode ()
+	//	{
+	//		if (cameraMode == CameraMode.Aim) {
+	//			cameraMode = CameraMode.Follow;
+	//		} else if (cameraMode == CameraMode.Follow) {
+	//			cameraMode = CameraMode.Aim;
+	//		}
+	//	}
+
+	#endregion
+
+	#region Private Methods
+
+	#endregion
 }
