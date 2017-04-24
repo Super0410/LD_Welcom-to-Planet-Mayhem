@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using GameSystems.Patterns;
+//using GameSystems.Patterns;
 
 public class RankUIGlobal : Singleton<RankUIGlobal>
 {

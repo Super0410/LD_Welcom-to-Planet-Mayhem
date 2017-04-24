@@ -169,7 +169,10 @@ namespace WelcomeToPlanetMayhem
 
 		#region Public Methods
 
-		
+		public void Init ()
+		{
+
+		}
 
 		#endregion
 

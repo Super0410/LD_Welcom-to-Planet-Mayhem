@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MultiPlayerManager : MonoBehaviour
+public class MultiPlayerManager : Singleton<MultiPlayerManager>
 {
 	
 	#region Public Members
 
-	public event System.Action<int> OnPlayerJoinEvent;
+	public static event System.Action<int> OnPlayerJoinEvent;
 
 	#endregion
 
@@ -43,7 +43,7 @@ public class MultiPlayerManager : MonoBehaviour
 	{
 		playerAliveCount--;
 		if (playerAliveCount <= 0) {
-			FindObjectOfType<GameManager> ().OnGameOver ();
+			GameManager.OnGameOver ();
 		}
 	}
 

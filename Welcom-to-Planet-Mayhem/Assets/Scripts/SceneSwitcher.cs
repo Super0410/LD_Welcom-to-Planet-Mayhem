@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using GameSystems.Patterns;
+
+//using GameSystems.Patterns;
 
 public class SceneSwitcher : Singleton<SceneSwitcher>
 {

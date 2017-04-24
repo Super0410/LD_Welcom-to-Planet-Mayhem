@@ -51,6 +51,8 @@
      <Compile Include="Assets\Scripts\Audio\MusicManager.cs" />
      <Compile Include="Assets\Scripts\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\Common\Common.cs" />
+     <Compile Include="Assets\Scripts\Common\EnumSpawnType.cs" />
+     <Compile Include="Assets\Scripts\Common\FisherYatesRandom.cs" />
      <Compile Include="Assets\Scripts\Common\IDamageable.cs" />
      <Compile Include="Assets\Scripts\Common\PhysicsTools.cs" />
      <Compile Include="Assets\Scripts\Effects\XLine.cs" />
@@ -61,6 +63,8 @@
      <Compile Include="Assets\Scripts\Gun\GunFlash.cs" />
      <Compile Include="Assets\Scripts\Gun\ShellEjection.cs" />
      <Compile Include="Assets\Scripts\Inventory System\Item.cs" />
+     <Compile Include="Assets\Scripts\MultiPlayer\MultiPlayerManager.cs" />
+     <Compile Include="Assets\Scripts\MultiPlayer\PlayerSpawner.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerCamera.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerInventory.cs" />
@@ -68,21 +72,26 @@
      <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
      <Compile Include="Assets\Scripts\PlayerController\GunController.cs" />
      <Compile Include="Assets\Scripts\PlayerController\PlayerInit.cs" />
-     <Compile Include="Assets\Scripts\PlayerSpawner\MultiPlayerManager.cs" />
-     <Compile Include="Assets\Scripts\PlayerSpawner\PlayerSpawner.cs" />
      <Compile Include="Assets\Scripts\SceneSwitcher.cs" />
      <Compile Include="Assets\Scripts\Score&amp;Rank\RankManager.cs" />
      <Compile Include="Assets\Scripts\Score&amp;Rank\RankUIGlobal.cs" />
      <Compile Include="Assets\Scripts\Score&amp;Rank\ScoreKeeperForPlayer.cs" />
      <Compile Include="Assets\Scripts\Score&amp;Rank\ScoreUIForPlayer.cs" />
+     <Compile Include="Assets\Scripts\Spawner\EnemySpawner\EnemySpawner.cs" />
+     <Compile Include="Assets\Scripts\Spawner\EnemySpawner\FakeEnemy.cs" />
+     <Compile Include="Assets\Scripts\Spawner\ObjectSpawner\ObjectSpawner.cs" />
      <Compile Include="Assets\Scripts\System\GravityBody.cs" />
      <Compile Include="Assets\Scripts\System\ObjectPooler.cs" />
      <Compile Include="Assets\Scripts\System\Planet.cs" />
+     <Compile Include="Assets\Scripts\System\PlanetDetector.cs" />
      <Compile Include="Assets\Scripts\System\Singleton.cs" />
+     <Compile Include="Assets\Scripts\System\SpawnPoint.cs" />
+     <Compile Include="Assets\Scripts\System\SpawnPointCreater.cs" />
      <Compile Include="Assets\Scripts\VFX.cs" />
      <Compile Include="Assets\Scripts\Weapon System\Bullet.cs" />
      <Compile Include="Assets\Scripts\Weapon System\WeaponHolder.cs" />
      <Compile Include="Assets\Scripts\Weapon.cs" />
+     <Compile Include="Assets\Scripts\_TEST_FakeEnemy.cs" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>

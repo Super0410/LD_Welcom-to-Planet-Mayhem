@@ -11,43 +11,40 @@ using UnityEngine;
 
 #endregion
 
-namespace WelcomeToPlanetMayhem
+[RequireComponent (typeof(Rigidbody))]
+public class GravityBody : MonoBehaviour
 {
-	[RequireComponent (typeof(Rigidbody))]
-	public class GravityBody : MonoBehaviour
-	{
-		//===============================================================================================================================//
-		//======================================================= Private Members =======================================================//
-		//===============================================================================================================================//
+	//===============================================================================================================================//
+	//======================================================= Private Members =======================================================//
+	//===============================================================================================================================//
 
-		#region PrivateMembers
+	#region PrivateMembers
 
-		protected Rigidbody myRig;
+	protected Rigidbody myRig;
 
-		#endregion
+	#endregion
 
 
-		//===============================================================================================================================//
-		//==================================================== Unity Event Functions ====================================================//
-		//===============================================================================================================================//
+	//===============================================================================================================================//
+	//==================================================== Unity Event Functions ====================================================//
+	//===============================================================================================================================//
 
-		#region UnityEventFunctions
+	#region UnityEventFunctions
 
-		// Use this for initialization
-		void Awake ()
-		{			
-			myRig = GetComponent<Rigidbody> ();
-			myRig.freezeRotation = true;
-			myRig.useGravity = false;
-		}
-	
-		// Update is called once per frame
-		protected virtual void FixedUpdate ()
-		{
-			Planet.Attract (myRig);
-		}
-
-		#endregion
-
+	// Use this for initialization
+	void Awake ()
+	{			
+		myRig = GetComponent<Rigidbody> ();
+		myRig.freezeRotation = true;
+		myRig.useGravity = false;
 	}
+	
+	// Update is called once per frame
+	protected virtual void FixedUpdate ()
+	{
+		Planet.Attract (myRig);
+	}
+
+	#endregion
+
 }

@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GameSystems.Patterns;
+
+//using GameSystems.Patterns;
 
 public class AudioManager : Singleton<AudioManager>
 {
@@ -95,17 +96,17 @@ public class AudioManager : Singleton<AudioManager>
 		Instance.StartCoroutine (animateAudio (fadeDuration));
 	}
 
-	public void PlaySound2d (string name)
+	public static void PlaySound2d (string name)
 	{
 		AudioClip clip = AudioLibrary.GetClipFromName (name);
 		if (clip != null)
-			SoundSource2d.PlayOneShot (clip, sfxVolumePercent * masterVolumePercent);
+			SoundSource2d.PlayOneShot (clip, Instance.sfxVolumePercent * Instance.masterVolumePercent);
 	}
 
-	public void PlaySound2d (AudioClip clip)
+	public static void PlaySound2d (AudioClip clip)
 	{
 		if (clip != null)
-			SoundSource2d.PlayOneShot (clip, sfxVolumePercent * masterVolumePercent);
+			SoundSource2d.PlayOneShot (clip, Instance.sfxVolumePercent * Instance.masterVolumePercent);
 	}
 
 	#endregion
